@@ -1,6 +1,9 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image, :author, :title
+  attr_accessible :image, :author, :title, :external_id
   mount_uploader :image, ImageUploader
+
+  validates_uniqueness_of :external_id
+  validates :image, :author, :title, presence: true
 
   def get_feed
     Feedzirra::Feed.fetch_and_parse($REDDIT[:rss_feed])
@@ -20,6 +23,7 @@ class Image < ActiveRecord::Base
     i.remote_image_url = entry.url
     i.author = entry.author
     i.title = entry.title
+    i.external_id = entry.entry_id
     i.save
   end
 end
