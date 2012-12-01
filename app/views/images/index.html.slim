@@ -1,11 +1,5 @@
 h1 Listing images
 
-table
-  tr
-    th
-    th
-    th
-
-  - @images.each do |image|
-    tr
-      td = link_to 'Show', image
+- @images.each do |image|
+  .image
+    img src="#{image.image.url}"
