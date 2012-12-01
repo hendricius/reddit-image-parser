@@ -1,3 +1,7 @@
-.span12
-  .image-show
-    img src="#{@image.image.url}"
+.image-show.span6.offset3
+  img src="#{@image.image.url}"
+  p "SUP"
+  = link_to image_path(@image.id + 1) do
+    .icon-circle-arrow-left.arrow
+  = link_to image_path(@image.id - 1) do
+    .icon-circle-arrow-right.arrow
