@@ -19,6 +19,8 @@ class Image < ActiveRecord::Base
     # entry.url contains the link to the feed.
    i = Image.new
    i.remote_image_url = entry.url
+   i.author = entry.author
+   i.title = entry.title
    i.save
   end
 end
