@@ -8,13 +8,16 @@ then stored locally and made accessibile via the browsers to visitors.
 1. Get a link to your rss feed. I am using Yahoo pipes to retrieve popular entries
        http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=15
 
-2. Copy config/reddit.example.yml to reddit.yml
-       cd config
-       cp reddit.example.yml reddit.yml
+2. To configure the rss feeds you need to setup bash variables:
+       export RSS_FEED="http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=100"
+       # Should only the remote image link be stored? That way the images are not stored locally
+       export STORE_REMOTE=true
 
 3. Add the RSS feed from step 1 into the reddit.yml
 
-4. Open the rails console and execute the following whenever you want to update images.
+4. Update manually, or use the provided rake task:
        Image.update_feed
+       # Or use the provided rake task:
+       rake update_feed
 
-4. Start the rails server and checkout the parsed images
+5. Start the rails server and checkout the parsed images
