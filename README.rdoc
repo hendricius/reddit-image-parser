@@ -5,15 +5,14 @@ then stored locally and made accessibile via the browsers to visitors.
 
 == Getting Started
 
-1. Get a link to your rss feed. I am using Yahoo pipes to retrieve popular entries
+1. Get a link to your rss feed. I am using Yahoo pipes to retrieve popular entries. I have not tested other RSS feeds.
        http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=15
 
 2. To configure the rss feeds you need to setup bash variables:
+       # The RSS feed you want to parse.
        export RSS_FEED="http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=100"
        # Should only the remote image link be stored? That way the images are not stored locally
        export STORE_REMOTE=true
-
-3. Add the RSS feed from step 1 into the reddit.yml
 
 4. Update manually, or use the provided rake task:
        Image.update_feed
