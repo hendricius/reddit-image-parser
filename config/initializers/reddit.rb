@@ -1,3 +1,2 @@
-reddit = YAML::load(File.open("#{Rails.root.to_s}/config/reddit.yml"))
-
-$REDDIT = reddit
+# You need to set up an environment variable with RSS_FEED
+$RSS_FEED =  ENV['RSS_FEED']

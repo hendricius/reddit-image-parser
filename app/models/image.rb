@@ -6,7 +6,7 @@ class Image < ActiveRecord::Base
   validates :image, :author, :title, presence: true
 
   def self.get_feed
-    Feedzirra::Feed.fetch_and_parse($REDDIT[:rss_feed])
+    Feedzirra::Feed.fetch_and_parse($RSS_FEED)
   end
 
   def self.update_feed
