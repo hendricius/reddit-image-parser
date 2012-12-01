@@ -15,12 +15,11 @@ class Image < ActiveRecord::Base
   end
 
   def save_image(entry)
-    puts entry
     # entry.url contains the link to the feed.
-   i = Image.new
-   i.remote_image_url = entry.url
-   i.author = entry.author
-   i.title = entry.title
-   i.save
+    i = Image.new
+    i.remote_image_url = entry.url
+    i.author = entry.author
+    i.title = entry.title
+    i.save
   end
 end
