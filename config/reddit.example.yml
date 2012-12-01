@@ -1,3 +1,2 @@
-# add a configuration which of the restaurants should be the demo restaurant.
-# This restaurant will be publicly exposed.
+# Specify the rss feed you would like to use.
 :rss_feed: "http://www.foo.com"
