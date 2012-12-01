@@ -2,7 +2,9 @@
   img src="#{@image.image.url}"
   p.lead "#{@image.title}"
   p by #{@image.author}
-  = link_to image_path(@image.id + 1) do
-    .icon-circle-arrow-left.arrow
-  = link_to image_path(@image.id - 1) do
-    .icon-circle-arrow-right.arrow
+  - if @higher
+    = link_to image_path(@higher) do
+      .icon-circle-arrow-left.arrow
+  - if @lower
+    = link_to image_path(@lower) do
+      .icon-circle-arrow-right.arrow
