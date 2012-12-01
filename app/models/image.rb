@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :image
+  attr_accessible :image, :author, :title
   mount_uploader :image, ImageUploader
 
   def get_feed
