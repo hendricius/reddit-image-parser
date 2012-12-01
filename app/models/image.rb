@@ -5,19 +5,19 @@ class Image < ActiveRecord::Base
   validates_uniqueness_of :external_id
   validates :image, :author, :title, presence: true
 
-  def get_feed
+  def self.get_feed
     Feedzirra::Feed.fetch_and_parse($REDDIT[:rss_feed])
   end
 
-  def parse_feed
-    get_feed.entries.each do |entry|
+  def self.update_feed
+    Image.get_feed.entries.each do |entry|
       # do not parse those that do not point to an image
       next if !entry.url.include?(".jpg")
-      save_image(entry)
+      Image.save_image(entry)
     end
   end
 
-  def save_image(entry)
+  def self.save_image(entry)
     # entry.url contains the link to the feed.
     i = Image.new
     i.remote_image_url = entry.url
