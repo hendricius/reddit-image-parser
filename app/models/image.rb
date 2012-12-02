@@ -6,10 +6,10 @@ class Image < ActiveRecord::Base
   validates :author, :title, :external_id, presence: true
   validate :image_or_external_link
 
-  def get_feed
+  def get_rss
     return false if !$REDDIT_RSS
     begin
-      Feedzirra::Feed.fetch_and_parse($REDDIT_RSS)
+      filter_data(Feedzirra::Feed.fetch_and_parse($REDDIT_RSS).entries)
     rescue
       false
     end
@@ -35,9 +35,14 @@ class Image < ActiveRecord::Base
   # Filter the data with a specified threshold score.
   def filter_score_threshold(json_data)
     return if !json_data
-    # Set a default threshold
-    $REDDIT_THRESHOLD ? threshold = $REDDIT_THRESHOLD : threshold = 100
-    json_data.select{|data| data.score.to_i >= threshold}
+    begin
+      # Set a default threshold
+      $REDDIT_THRESHOLD ? threshold = $REDDIT_THRESHOLD : threshold = 100
+      json_data.select{|data| data.score.to_i >= threshold}
+    rescue
+      # Some feeds may not have a score, do not filter them.
+      json_data
+    end
   end
 
   # Filter only direct .jpg/png/gif links.
@@ -56,10 +61,7 @@ class Image < ActiveRecord::Base
   end
 
   def update_rss_feed
-    get_feed.entries.each do |entry|
-      # do not parse those that do not point to an image
-      # TODO fix this.
-      next if !entry.url.include?(".jpg")
+    get_rss.entries.each do |entry|
       save_image(entry)
     end
   end
