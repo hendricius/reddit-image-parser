@@ -155,6 +155,7 @@ DEPENDENCIES
   font-awesome-sass-rails
   httparty
   jquery-rails
+  nokogiri
   pg
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
