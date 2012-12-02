@@ -20,16 +20,35 @@ class Image < ActiveRecord::Base
     begin
       # Use the maximum results Reddit API allows
       response = HTTParty.get "#{$REDDIT_JSON}?limit=100"
-      response["data"]["children"].map{|entry| OpenStruct.new entry["data"]}
+      response = response["data"]["children"].map{|entry| OpenStruct.new entry["data"]}
+      filter_data(response)
     rescue
       false
     end
   end
 
+  def filter_data(entries)
+    data = filter_score_threshold(entries)
+    filter_images(data)
+  end
+
+  # Filter the data with a specified threshold score.
+  def filter_score_threshold(json_data)
+    return if !json_data
+    # Set a default threshold
+    $REDDIT_THRESHOLD ? threshold = $REDDIT_THRESHOLD : threshold = 100
+    json_data.select{|data| data.score.to_i >= threshold}
+  end
+
+  # Filter only direct .jpg/png/gif links.
+  def filter_images(entries)
+    entries.select{|data| data.url.include?(".jpg") || data.url.include?(".png") || data.url.include?(".gif")}
+  end
+
   def self.update_feed
     if $REDDIT_JSON
       img = Image.new
-      img.update_json_feed
+      img.update_json
     else
       img = Image.new
       img.update_rss_feed
@@ -39,7 +58,14 @@ class Image < ActiveRecord::Base
   def update_rss_feed
     get_feed.entries.each do |entry|
       # do not parse those that do not point to an image
+      # TODO fix this.
       next if !entry.url.include?(".jpg")
+      save_image(entry)
+    end
+  end
+
+  def update_json
+    get_json.each do |entry|
       save_image(entry)
     end
   end
@@ -47,6 +73,8 @@ class Image < ActiveRecord::Base
   def save_image(entry)
     # entry.url contains the link to the feed.
     i = Image.new
+    # If store remote is false, carrierwave will download the images and store
+    # them locally.
     if $STORE_REMOTE
       i.external_link = entry.url
     else
@@ -54,8 +82,21 @@ class Image < ActiveRecord::Base
     end
     i.author = entry.author
     i.title = entry.title
-    i.external_id = entry.entry_id
+    i.external_id = attempt_to_get_id(entry)
     i.save
+  end
+
+  # Some entries may not have an entry_id. others have an id.
+  def attempt_to_get_id(entry)
+    begin
+      if entry.id
+        entry.id
+      else
+        entry.entry_id
+      end
+    rescue
+      nil
+    end
   end
 
   def build_image_link

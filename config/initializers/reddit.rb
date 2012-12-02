@@ -5,7 +5,7 @@ $REDDIT_RSS =  ENV['REDDIT_RSS']
 # For using JSON. If JSON is detected, it has higher importance than RSS. Set
 # the environment variables as well.
 $REDDIT_JSON = ENV['REDDIT_JSON']
-$REDDIT_THRESHOLD = ENV['REDDIT_THRESHOLD']
+$REDDIT_THRESHOLD = ENV['REDDIT_THRESHOLD'].to_i
 
 # Should only the remote image link be stored?
 # export STORE_REMOTE=true
