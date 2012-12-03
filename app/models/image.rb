@@ -51,23 +51,14 @@ class Image < ActiveRecord::Base
   end
 
   def self.update_feed
-    if $REDDIT_JSON
-      img = Image.new
-      img.update_json
-    else
-      img = Image.new
-      img.update_rss_feed
-    end
+    img = Image.new
+    img.update_entries(Parser.new.images)
+    img.update_entries(Parser.new.collections)
   end
 
-  def update_rss_feed
-    get_rss.entries.each do |entry|
-      save_image(entry)
-    end
-  end
-
-  def update_json
-    get_json.each do |entry|
+  def update_entries(data)
+    return if !data
+    data.each do |entry|
       save_image(entry)
     end
   end
@@ -84,21 +75,8 @@ class Image < ActiveRecord::Base
     end
     i.author = entry.author
     i.title = entry.title
-    i.external_id = attempt_to_get_id(entry)
+    i.external_id = entry.id
     i.save
-  end
-
-  # Some entries may not have an entry_id. others have an id.
-  def attempt_to_get_id(entry)
-    begin
-      if entry.id
-        entry.id
-      else
-        entry.entry_id
-      end
-    rescue
-      nil
-    end
   end
 
   def build_image_link
