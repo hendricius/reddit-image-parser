@@ -1,22 +1,20 @@
 == Reddit Image Parser
 
-A rails application that parses images from a reddit rss feed. The images are
-then stored locally and made accessibile via the browsers to visitors.
+A rails application that parses images from a reddit rss feed/json source. The
+images are then presented in a nice mobile responsive gallery for users to
+have fun surfing. A rake task allows you to automate updating the data.
 
 == Getting Started
 
-1. Get a link to your rss feed. I am using Yahoo pipes to retrieve popular entries. I have not tested other RSS feeds.
-       http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=15
+1. Get a link to your reddit json feed, or an rss feed.
 
-2. To configure the rss feeds you need to setup bash variables:
-       # The RSS feed you want to parse.
-       export RSS_FEED="http://pipes.yahoo.com/pipes/pipe.run?_id=4a3af06dcba612424a858ea79dd263db&_render=rss&subreddit=funny&threshold=100"
-       # Should only the remote image link be stored? That way the images are not stored locally
-       export STORE_REMOTE=true
+2. Check config/initializers/reddit.rb for configuration options.
 
-4. Update manually, or use the provided rake task:
+3. Configuration is done via bash variables making an heroku deploy very easy.
+
+4. Update images manually, or use the provided rake task:
        Image.update_feed
        # Or use the provided rake task:
        rake update_feed
 
-5. Start the rails server and checkout the parsed images
+5. Have fun.
