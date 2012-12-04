@@ -4,7 +4,7 @@
   p by #{@image.author}
   - if @higher
     = link_to image_path(@higher), :class => "arrow arrow-left" do
-      .icon-circle-arrow-left
+      i.icon-circle-arrow-left
   - if @lower
     = link_to image_path(@lower), :class => "arrow arrow-right" do
-      .icon-circle-arrow-right
+      i.icon-circle-arrow-right
