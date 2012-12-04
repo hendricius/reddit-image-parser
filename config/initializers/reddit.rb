@@ -7,6 +7,9 @@ $REDDIT_RSS =  ENV['REDDIT_RSS']
 $REDDIT_JSON = ENV['REDDIT_JSON']
 $REDDIT_THRESHOLD = ENV['REDDIT_THRESHOLD'].to_i
 
+# Set the title that should be used.
+$REDDIT_TITLE = ENV['REDDIT_TITLE']
+
 # Should only the remote image link be stored?
 # export STORE_REMOTE=true
 $STORE_REMOTE =  ENV['STORE_REMOTE']

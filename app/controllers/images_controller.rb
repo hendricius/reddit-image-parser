@@ -5,6 +5,7 @@ class ImagesController < ApplicationController
     @image = Image.find_by_id(params[:id])
     @higher = Image.find_by_id(@image.id + 1)
     @lower = Image.find_by_id(@image.id - 1)
+    @title = @image.title
   end
 
   def latest
