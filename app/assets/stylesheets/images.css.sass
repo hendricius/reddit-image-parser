@@ -6,14 +6,18 @@
   text-align: center
   position: relative
 .arrow
+  display: inline-block
   position: absolute
-  top: 50%
+  top: 200px
   font-size: 70px
   color: #000
   &:hover
     color: #000
     text-decoration: none
-.icon-circle-arrow-right
-  right: -30px
-.icon-circle-arrow-left
-  left: -30px
+.arrow-right
+  right: 0px
+.arrow-left
+  left: 0px
+@media (max-width: 979px)
+  .arrow
+    padding: 0px
