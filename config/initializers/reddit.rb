@@ -10,6 +10,9 @@ $REDDIT_THRESHOLD = ENV['REDDIT_THRESHOLD'].to_i
 # Set the title that should be used.
 $REDDIT_TITLE = ENV['REDDIT_TITLE']
 
+# Use google analytics. Supply your property id.
+$REDDIT_ANALYTICS = ENV['REDDIT_ANALYTICS']
+
 # Should only the remote image link be stored?
 # export STORE_REMOTE=true
 $STORE_REMOTE =  ENV['STORE_REMOTE']
