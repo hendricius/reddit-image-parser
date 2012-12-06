@@ -12,6 +12,9 @@ $REDDIT_RSS =  ENV['REDDIT_RSS']
 # Set the title that should be used.
 $REDDIT_TITLE = ENV['REDDIT_TITLE']
 
+# Set a slogan that should be used.
+$REDDIT_SLOGAN = ENV['REDDIT_SLOGAN']
+
 # Use google analytics. Supply your property id.
 $REDDIT_ANALYTICS = ENV['REDDIT_ANALYTICS']
 

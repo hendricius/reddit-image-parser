@@ -1,10 +1,25 @@
+@import compass
 body
   background-image: url("/assets/pattern.png")
   background-size: 130px 130px
-  padding-top: 60px
-.container
+.content
   background-color: #fff
-  padding: 40px 0px
-@media (max-width: 480px)
-  body
-    padding: 0px
+  padding: 40px 0px 40px 0px
+  @include border-radius(15px)
+  margin-top: 70px
+.navbar-inverse .brand, .navbar-inverse .nav > li > a
+  color: #fff
+@media (max-width: 979px)
+  .navbar-fixed-top, .navbar-fixed-bottom
+    position: fixed
+@media (max-width: 979px)
+  .navbar .brand
+    padding-left: 10px
+    padding-right: 10px
+    margin-left: 20px
+.teaser
+  color: #aaa
+  float: left
+  display: block
+  font-size: 9px
+  margin-top: 13px
