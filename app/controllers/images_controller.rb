@@ -10,6 +10,9 @@ class ImagesController < ApplicationController
 
   def latest
     @image = Image.last
-    redirect_to @image
+    @higher = Image.find_by_id(@image.id + 1)
+    @lower = Image.find_by_id(@image.id - 1)
+    @title = @image.title
+    render "show"
   end
 end
