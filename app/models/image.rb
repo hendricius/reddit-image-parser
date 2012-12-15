@@ -87,6 +87,16 @@ class Image < ActiveRecord::Base
     end
   end
 
+  # Return the next available record.
+  def next
+    self.class.where("id > ?", id).first
+  end
+
+  # Return a previous available record.
+  def previous
+    self.class.where("id < ?", id).first
+  end
+
   private
 
   def image_or_external_link
