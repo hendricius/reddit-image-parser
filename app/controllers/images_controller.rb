@@ -3,15 +3,15 @@ class ImagesController < ApplicationController
 
   def show
     @image = Image.find_by_id(params[:id])
-    @higher = @image.next
-    @lower = @image.previous
+    @next = @image.next
+    @previous = @image.previous
     @title = @image.title
   end
 
   def latest
     @image = Image.last
-    @higher = @image.next
-    @lower = @image.previous
+    @next = @image.next
+    @previous = @image.previous
     @title = @image.title
     render "show"
   end

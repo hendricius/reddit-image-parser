@@ -2,9 +2,9 @@
   img src="#{@image.build_image_link}"
   p.lead "#{@image.title}"
   p by #{@image.author}
-  - if @higher
-    = link_to image_path(@higher), :class => "arrow arrow-left" do
+  - if @next
+    = link_to image_path(@next), :class => "arrow arrow-left" do
       i.icon-circle-arrow-left
-  - if @lower
-    = link_to image_path(@lower), :class => "arrow arrow-right" do
+  - if @previous
+    = link_to image_path(@previous), :class => "arrow arrow-right" do
       i.icon-circle-arrow-right

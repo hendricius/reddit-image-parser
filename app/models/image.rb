@@ -94,7 +94,7 @@ class Image < ActiveRecord::Base
 
   # Return a previous available record.
   def previous
-    self.class.where("id < ?", id).first
+    self.class.where("id < ?", id).last
   end
 
   private
