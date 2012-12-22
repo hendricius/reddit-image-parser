@@ -101,15 +101,6 @@ class Image < ActiveRecord::Base
     self.class.where("id < ?", id).last
   end
 
-  private
-
-  def image_or_external_link
-    if !image && !external_link
-      errors(:image, "Needs to have either image or external image")
-      errors(:external_link, "Needs to have either image or external image")
-    end
-  end
-
   def assign_user
     existing = User.where(username: author)
     if !existing.empty?
@@ -124,5 +115,14 @@ class Image < ActiveRecord::Base
     u = User.init_based_on_username(author)
     return false if !u.save
     self.user = u
+  end
+
+  private
+
+  def image_or_external_link
+    if !image && !external_link
+      errors(:image, "Needs to have either image or external image")
+      errors(:external_link, "Needs to have either image or external image")
+    end
   end
 end

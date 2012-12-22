@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
       password: temppw,
       password_confirmation: temppw,
       email: "#{username}@dafuqrssparser.com",
-      username: username
+      username: username,
+      # Mark as being automatically generated
+      external: true
     )
   end
 
