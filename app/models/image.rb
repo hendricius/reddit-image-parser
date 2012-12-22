@@ -2,6 +2,8 @@ class Image < ActiveRecord::Base
   attr_accessible :image, :author, :title, :external_id, :external_link
   mount_uploader :image, ImageUploader
 
+  belongs_to :user
+
   validates_uniqueness_of :external_id, :external_link
   validates :author, :title, :external_id, presence: true
   validate :image_or_external_link
