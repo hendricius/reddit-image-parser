@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email, :username
 
-  def self.create_based_on_username(username)
+  def self.init_based_on_username(username)
     return false if !username || (username.length == 0)
     temppw = SecureRandom.hex(20)
     User.new(
@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
       password_confirmation: temppw,
       email: "#{username}@dafuqrssparser.com",
       username: username
-    ).save
+    )
   end
 
 end

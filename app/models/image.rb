@@ -5,8 +5,10 @@ class Image < ActiveRecord::Base
   belongs_to :user
 
   validates_uniqueness_of :external_id, :external_link
-  validates :author, :title, :external_id, presence: true
+  validates :author, :title, :external_id, :user, presence: true
   validate :image_or_external_link
+
+  before_validation :create_user_for_image, :on => :create
 
   def get_rss
     return false if !$REDDIT_RSS
@@ -106,5 +108,12 @@ class Image < ActiveRecord::Base
       errors(:image, "Needs to have either image or external image")
       errors(:external_link, "Needs to have either image or external image")
     end
+  end
+
+  # Create a user for the image
+  def create_user_for_image
+    u = User.init_based_on_username(author)
+    return false if !u.save
+    self.user = u
   end
 end
