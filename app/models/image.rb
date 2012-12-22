@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
   validates :author, :title, :external_id, :user, presence: true
   validate :image_or_external_link
 
-  before_validation :create_user_for_image, :on => :create
+  before_validation :assign_user, :on => :create
 
   def get_rss
     return false if !$REDDIT_RSS
@@ -107,6 +107,15 @@ class Image < ActiveRecord::Base
     if !image && !external_link
       errors(:image, "Needs to have either image or external image")
       errors(:external_link, "Needs to have either image or external image")
+    end
+  end
+
+  def assign_user
+    existing = User.where(username: author)
+    if !existing.empty?
+      self.user = existing.first
+    else
+      create_user_for_image
     end
   end
 
