@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  attr_accessible :email, :password, :password_confirmation, :user_name
+  attr_accessible :email, :password, :password_confirmation, :username
 
   has_many :images
 

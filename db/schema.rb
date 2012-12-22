@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(:version => 20121222164804) do
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
     t.boolean  "external"
-    t.string   "user_name"
   end
 
 end
