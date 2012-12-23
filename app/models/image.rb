@@ -17,6 +17,18 @@ class Image < ActiveRecord::Base
     img.update_entries(Parser.new.collections)
   end
 
+  def self.top_ten_users
+    self.top_users(10)
+  end
+
+  def self.top_users(amount)
+    self.limit(amount).order("count_all desc").count(group: :user_id).map do |key, val|
+      u = User.find(key)
+      u.total_images = val
+      u
+    end
+  end
+
   def save_image(entry)
     # entry.url contains the link to the feed.
     i = Image.new
