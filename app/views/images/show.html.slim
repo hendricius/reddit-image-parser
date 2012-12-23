@@ -3,8 +3,8 @@
   p.lead "#{@image.title}"
   p by #{@image.author}
   - if @next
-    = link_to image_path(@next), :class => "arrow arrow-left" do
+    = link_to user_image_or_image_path(@next, @user), :class => "arrow arrow-left" do
       i.icon-circle-arrow-left
   - if @previous
-    = link_to image_path(@previous), :class => "arrow arrow-right" do
+    = link_to user_image_or_image_path(@previous, @user), :class => "arrow arrow-right" do
       i.icon-circle-arrow-right

@@ -15,4 +15,23 @@ class ImagesController < ApplicationController
     @title = @image.title
     render "show"
   end
+
+  def index
+    @user = User.find(params[:user_id])
+    @image = @user.images.last
+    @next = @image.next_from_user
+    @previous = @image.previous_from_user
+    @title = @image.title
+    render "show"
+  end
+
+  def user_image
+    @user = User.find(params[:user_id])
+    @image = Image.find(params[:image_id])
+    @next = @image.next_from_user
+    @previous = @image.previous_from_user
+    @title = @image.title
+    render "show"
+  end
+
 end

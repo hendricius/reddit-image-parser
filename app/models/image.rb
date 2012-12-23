@@ -10,61 +10,11 @@ class Image < ActiveRecord::Base
 
   before_validation :assign_user, :on => :create
 
-  def get_rss
-    return false if !$REDDIT_RSS
-    begin
-      filter_data(Feedzirra::Feed.fetch_and_parse($REDDIT_RSS).entries)
-    rescue
-      false
-    end
-  end
-
-  def get_json
-    return false if !$REDDIT_JSON
-    begin
-      # Use the maximum results Reddit API allows
-      response = HTTParty.get "#{$REDDIT_JSON}?limit=100"
-      response = response["data"]["children"].map{|entry| OpenStruct.new entry["data"]}
-      filter_data(response)
-    rescue
-      false
-    end
-  end
-
-  def filter_data(entries)
-    data = filter_score_threshold(entries)
-    filter_images(data)
-  end
-
-  # Filter the data with a specified threshold score.
-  def filter_score_threshold(json_data)
-    return if !json_data
-    begin
-      # Set a default threshold
-      $REDDIT_THRESHOLD ? threshold = $REDDIT_THRESHOLD : threshold = 100
-      json_data.select{|data| data.score.to_i >= threshold}
-    rescue
-      # Some feeds may not have a score, do not filter them.
-      json_data
-    end
-  end
-
-  # Filter only direct .jpg/png/gif links.
-  def filter_images(entries)
-    entries.select{|data| data.url.include?(".jpg") || data.url.include?(".png") || data.url.include?(".gif")}
-  end
-
+  # Update all the feeds to fetch the latest images..
   def self.update_feed
     img = Image.new
     img.update_entries(Parser.new.images)
     img.update_entries(Parser.new.collections)
-  end
-
-  def update_entries(data)
-    return if !data
-    data.each do |entry|
-      save_image(entry)
-    end
   end
 
   def save_image(entry)
@@ -99,6 +49,14 @@ class Image < ActiveRecord::Base
   # Return a previous available record.
   def previous
     self.class.where("id < ?", id).last
+  end
+
+  def next_from_user
+    self.class.where("id > ? AND user_id = ?", id, user_id).first
+  end
+
+  def previous_from_user
+    self.class.where("id < ? AND user_id = ?", id, user_id).last
   end
 
   def assign_user
