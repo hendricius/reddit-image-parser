@@ -6,6 +6,7 @@ class ImagesController < ApplicationController
     @next = @image.next
     @previous = @image.previous
     @title = @image.title
+    @image_count = @image.user.images.count
   end
 
   def latest
@@ -13,6 +14,7 @@ class ImagesController < ApplicationController
     @next = @image.next
     @previous = @image.previous
     @title = @image.title
+    @image_count = @image.user.images.count
     render "show"
   end
 
@@ -22,6 +24,7 @@ class ImagesController < ApplicationController
     @next = @image.next_from_user
     @previous = @image.previous_from_user
     @title = @image.title
+    @image_count = @image.user.images.count
     render "show"
   end
 
@@ -31,6 +34,7 @@ class ImagesController < ApplicationController
     @next = @image.next_from_user
     @previous = @image.previous_from_user
     @title = @image.title
+    @image_count = @image.user.images.count
     render "show"
   end
 
