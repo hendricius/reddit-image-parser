@@ -38,7 +38,9 @@ class ImagesController < ApplicationController
     render "show"
   end
 
+  # Show the 10 top users who contributed most images.
   def top_users
+    @top = Image.top_ten_users
   end
 
 end

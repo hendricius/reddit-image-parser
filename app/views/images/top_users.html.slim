@@ -1,0 +1,15 @@
+.span10.offset1
+  h3.with-icon
+    i.icon-heart
+    span The top contributing users
+  table.table
+    thead
+      tr
+        th User
+        th Count
+    tbody
+      - @top.each do |user|
+        tr
+          td= user.username
+          td= link_to "#{user.total_images} submitted", user_images_path(user)
+
