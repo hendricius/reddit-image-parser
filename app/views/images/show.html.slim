@@ -1,7 +1,9 @@
 .image-show.span6.offset3
   img src="#{@image.build_image_link}"
   p.lead "#{@image.title}"
-  p by #{@image.author}
+  p
+    span by 
+    = link_to @image.user.username, user_images_path(@image.user)
   - if @next
     = link_to user_image_or_image_path(@next, @user), :class => "arrow arrow-left" do
       i.icon-circle-arrow-left
