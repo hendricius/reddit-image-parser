@@ -38,4 +38,7 @@ class ImagesController < ApplicationController
     render "show"
   end
 
+  def top_users
+  end
+
 end
