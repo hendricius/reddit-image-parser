@@ -1,5 +1,13 @@
 .navbar.navbar-inverse.navbar-fixed-top
   .navbar-inner
     .container
+      button.btn.btn-navbar data-target=".nav-collapse" data-toggle="collapse" type="button"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
       a.brand href="/"= $REDDIT_TITLE
       span.teaser= $REDDIT_SLOGAN
+      .nav-collapse.collapse
+        ul.nav
+          li
+            = link_to "Top users", top_users_path
