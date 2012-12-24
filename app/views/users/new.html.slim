@@ -1,11 +1,7 @@
-= form_for @user do |f|
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .actions= f.submit
+.span12
+  = simple_form_for @user do |f|
+    = f.input :email
+    = f.input :password
+    = f.input :password_confirmation
+    .form-actions
+      = f.button :submit, "Create account"
