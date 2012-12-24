@@ -13,3 +13,11 @@
             = link_to "All images", root_path
           li
             = link_to "Top users", top_users_path
+          - if current_user
+            li
+              = link_to "Logout", logout_path
+          - else
+            li
+              = link_to "Login", login_path
+            li
+              = link_to "Register", new_user_path
