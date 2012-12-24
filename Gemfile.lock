@@ -1,3 +1,12 @@
+GIT
+  remote: https://github.com/plataformatec/simple_form.git
+  revision: 602c634dd6f05e1f2a5548053e7059dc274bebef
+  branch: master
+  specs:
+    simple_form (2.1.0.dev)
+      actionpack (~> 3.0)
+      activemodel (~> 3.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -173,6 +182,7 @@ DEPENDENCIES
   pg
   rails (= 3.2.8)
   sass-rails (~> 3.2.3)
+  simple_form!
   slim
   slim-rails
   sorcery

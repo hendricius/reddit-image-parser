@@ -6,7 +6,15 @@ gem 'rails', '3.2.8'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'slim'
+gem 'slim-rails'
+gem 'carrierwave'
+gem 'feedzirra'
+gem 'httparty'
+gem 'nokogiri'
+gem 'sorcery'
+gem 'simple_form', git: 'https://github.com/plataformatec/simple_form.git', branch: :master
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,8 +28,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'sass-rails',   '~> 3.2.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -37,10 +43,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
-gem 'slim'
-gem 'slim-rails'
-gem 'carrierwave'
-gem 'feedzirra'
-gem 'httparty'
-gem 'nokogiri'
-gem 'sorcery'
