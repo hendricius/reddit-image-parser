@@ -21,6 +21,13 @@ class Image < ActiveRecord::Base
     self.top_users(10)
   end
 
+  def update_entries(data)
+    return if !data
+    data.each do |entry|
+      save_image(entry)
+    end
+  end
+
   def self.top_users(amount)
     self.limit(amount).order("count_all desc").count(group: :user_id).map do |key, val|
       u = User.find(key)
