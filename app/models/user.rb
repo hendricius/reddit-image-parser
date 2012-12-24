@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :images
 
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
+  validates_presence_of :password, :password_confirmation, :on => :create
   validates_presence_of :email, :username
   validates_uniqueness_of :email, :username
 
