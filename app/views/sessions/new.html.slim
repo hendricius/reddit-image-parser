@@ -1,11 +1,8 @@
-= form_tag sessions_path do
-  .field
-    = label_tag :email
-    = text_field_tag :email, params[:email]
-  .field
-    = label_tag :password
-    = password_field_tag :password
-  .field
-    = check_box_tag :remember_me, 1, params[:remember_me]
-    = label_tag :remember_me
-  .actions= submit_tag "Log in"
+.span12
+  = simple_form_for(:session, url: sessions_path) do |f|
+    = f.input :username
+    = f.input :password
+    .form-actions
+      .btn-group
+        = f.button :submit, "Log in"
+        = link_to "Create account", new_user_path, class: "btn"
