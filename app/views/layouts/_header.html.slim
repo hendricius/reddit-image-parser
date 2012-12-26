@@ -16,6 +16,8 @@
           - if current_user
             li
               = link_to "Logout", logout_path
+            li
+              = link_to "Favorites", user_favorites_path(current_user)
           - else
             li
               = link_to "Login", login_path
