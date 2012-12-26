@@ -1,10 +1,10 @@
 .image-rating
   - if current_user
     - if current_user.favorited?(@image)
-      = link_to unfavorite_image_path(@image), method: :post do
+      = link_to unfavorite_image_path(@image), method: :post, remote: true do
         i.icon-star.active
     - else
-      = link_to favorite_image_path(@image), method: :post do
+      = link_to favorite_image_path(@image), method: :post, remote: true do
         i.icon-star
   - else
     - #show some mesage. TODO

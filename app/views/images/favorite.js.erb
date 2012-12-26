@@ -1,0 +1,3 @@
+$(".image-rating").replaceWith("<%= escape_javascript(
+  render(:partial => "favorite_indicator", locals: {image: @image, user: current_user})
+)%>");

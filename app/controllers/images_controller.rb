@@ -46,7 +46,10 @@ class ImagesController < ApplicationController
   def favorite
     @image = Image.find_by_id(params[:id])
     if Favorite.create_favorite_image_user(@image, current_user)
-      redirect_to image_path(@image), notice: "Successfully favorited image."
+      respond_to do |format|
+        format.html {redirect_to image_path(@image), notice: "Successfully favorited image."}
+        format.js
+      end
     else
       flash[:error] = "Could not save image"
     end
@@ -55,7 +58,10 @@ class ImagesController < ApplicationController
   def unfavorite
     @image = Image.find_by_id(params[:id])
     if Favorite.delete_favorite_image_user(@image, current_user)
-      redirect_to image_path(@image), notice: "Successfully unfavorited image."
+      respond_to do |format|
+        format.html {redirect_to image_path(@image), notice: "Successfully unfavorited image."}
+        format.js {render "favorite"}
+      end
     else
       flash[:error] = "Could not unfavorite image"
     end
