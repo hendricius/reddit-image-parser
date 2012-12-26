@@ -24,4 +24,9 @@ class User < ActiveRecord::Base
     )
   end
 
+  # Did the user favorite a specific image?
+  def favorited?(test_image)
+    favorites.where(image_id: test_image.id).any?
+  end
+
 end
