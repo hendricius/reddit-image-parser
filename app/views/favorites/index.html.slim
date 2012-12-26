@@ -1,0 +1,18 @@
+.span10.offset1
+  h3.with-icon
+    i.icon-heart
+    span Your favorites.
+  table.table
+    thead
+      tr
+        th Link
+        th Author
+        th Description
+        th Created
+    tbody
+      - @favorites.each do |fav|
+        tr
+          td View
+          td Author
+          td Description
+          td Created
