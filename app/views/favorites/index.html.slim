@@ -13,7 +13,7 @@
       - @favorites.each do |fav|
         tr
           td
-            = link_to "View image", image_path(fav)
+            = link_to "View image", image_path(fav.image)
           td= fav.image.user.username
           td= fav.image.title
           td= fav.image.created_at
