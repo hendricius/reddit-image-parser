@@ -2,6 +2,7 @@ class Image < ActiveRecord::Base
   attr_accessible :image, :author, :title, :external_id, :external_link
   mount_uploader :image, ImageUploader
 
+  has_many :favorites
   belongs_to :user
 
   validates_uniqueness_of :external_id, :external_link

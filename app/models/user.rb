@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :total_images
 
   has_many :images
+  has_many :favorites
 
   validates_confirmation_of :password
   validates_presence_of :password, :password_confirmation, :on => :create
