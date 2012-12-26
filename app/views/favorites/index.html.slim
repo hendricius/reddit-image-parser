@@ -16,4 +16,4 @@
             = link_to "View image", image_path(fav.image)
           td= fav.image.user.username
           td= fav.image.title
-          td= fav.image.created_at
+          td= l fav.image.created_at, format: :short
