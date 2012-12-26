@@ -12,7 +12,8 @@
     tbody
       - @favorites.each do |fav|
         tr
-          td View
-          td Author
-          td Description
-          td Created
+          td
+            = link_to "View image", image_path(fav)
+          td= fav.image.user.username
+          td= fav.image.title
+          td= fav.image.created_at
