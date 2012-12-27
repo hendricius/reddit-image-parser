@@ -6,9 +6,9 @@
     span by 
     = link_to "#{@image.user.username} (#{@image_count})", user_images_path(@image.user)
   - if @next
-    = link_to user_image_or_image_path(@next, @user), :class => "arrow arrow-left" do
+    = link_to user_image_or_image_path(@next, @user), :class => "r-arrow arrow-left" do
       i.icon-circle-arrow-left
   - if @previous
-    = link_to user_image_or_image_path(@previous, @user), :class => "arrow arrow-right" do
+    = link_to user_image_or_image_path(@previous, @user), :class => "r-arrow arrow-right" do
       i.icon-circle-arrow-right
   = render "favorite_indicator", image: @image, user: current_user
