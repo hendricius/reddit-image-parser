@@ -15,6 +15,12 @@ $REDDIT_TITLE = ENV['REDDIT_TITLE']
 # Set a slogan that should be used.
 $REDDIT_SLOGAN = ENV['REDDIT_SLOGAN']
 
+# Description for metatags
+$REDDIT_DESCRIPTION = ENV['REDDIT_DESCRIPTION']
+
+# Favicon link. Must be an .ico
+$REDDIT_FAVICON = ENV['REDDIT_FAVICON']
+
 # Use google analytics. Supply your property id.
 $REDDIT_ANALYTICS = ENV['REDDIT_ANALYTICS']
 
