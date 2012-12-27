@@ -2,9 +2,9 @@ class Favorite < ActiveRecord::Base
   attr_accessible :image_id, :user_id, :user, :image
   belongs_to :user
   belongs_to :image
-  
-  # TODO
-  # user can only have one favorite per image.
+
+  validates :image_id, uniqueness: {scope: :user_id}
+  validates :user, :image, presence: true
 
   # Create a favorite image for the user
   def self.create_favorite_image_user(image, user)
