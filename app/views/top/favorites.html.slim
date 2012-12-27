@@ -1,0 +1,17 @@
+.span10.offset1
+  h3.with-icon
+    i.icon-heart
+    span Most favorited images
+  table.table
+    thead
+      tr
+        th Image
+        th Uploader
+        th Count
+    tbody
+      - @top.each do |user|
+        tr
+          td image link
+          td uploader name
+          td count
+
