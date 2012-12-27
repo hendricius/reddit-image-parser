@@ -1,5 +1,6 @@
 class Image < ActiveRecord::Base
   attr_accessible :image, :author, :title, :external_id, :external_link
+  attr_accessor :favorited_count
   mount_uploader :image, ImageUploader
 
   has_many :favorites

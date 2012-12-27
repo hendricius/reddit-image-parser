@@ -20,4 +20,17 @@ class Favorite < ActiveRecord::Base
     fav.destroyed?
   end
 
+  def self.top_ten_favorited
+    self.top_favorited_amount(10)
+  end
+
+  # Returns the most favorited images.
+  def self.top_favorited_amount(amount)
+    self.limit(amount).order("count_all desc").count(group: :image_id).map do |image, quantity|
+      i = Image.find(image)
+      i.favorited_count = quantity
+      i
+    end
+  end
+
 end

@@ -8,6 +8,6 @@ class TopController < ApplicationController
 
   # Show the images that were most favorited
   def favorites
-    @top = Image.top_ten_users
+    @top = Favorite.top_ten_favorited
   end
 end

@@ -9,9 +9,10 @@
         th Uploader
         th Count
     tbody
-      - @top.each do |user|
+      - @top.each do |image|
         tr
-          td image link
-          td uploader name
-          td count
+          td
+            = link_to "View image", image_path(image)
+          td= link_to image.user.username, user_images_path(image.user)
+          td= image.favorited_count
 
