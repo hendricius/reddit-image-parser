@@ -7,12 +7,12 @@
       tr
         th Image
         th Uploader
-        th Favorited times
+        th Total
     tbody
       - @top.each do |image|
         tr
           td
             = link_to "View image", image_path(image)
           td= link_to image.user.username, user_images_path(image.user)
-          td= image.favorited_count
+          td= "#{image.favorited_count} x"
 
