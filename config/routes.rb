@@ -10,7 +10,8 @@ RedditRss::Application.routes.draw do
     resources :favorites, only: [:index]
   end
   get 'users/:user_id/images/:image_id' => 'images#user_image', as: "user_image_collection"
-  get "top_users" => "images#top_users", as: "top_users"
+  get "top_users" => "top#users", as: "top_users"
+  get "top_favorited" => "top#favorites", as: "top_favorited"
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"

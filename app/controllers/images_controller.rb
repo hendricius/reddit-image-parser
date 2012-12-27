@@ -38,11 +38,6 @@ class ImagesController < ApplicationController
     render "show"
   end
 
-  # Show the 10 top users who contributed most images.
-  def top_users
-    @top = Image.top_ten_users
-  end
-
   def favorite
     @image = Image.find_by_id(params[:id])
     if Favorite.create_favorite_image_user(@image, current_user)
