@@ -2,12 +2,12 @@
   - if current_user
     - if current_user.favorited?(@image)
       = link_to unfavorite_image_path(@image), method: :post, remote: true do
-        i.icon-star.active
+        .icon-star.active
     - else
       = link_to favorite_image_path(@image), method: :post, remote: true do
-        i.icon-star
+        .icon-star
   - else
-    i.icon-star[rel="popover"
+    .icon-star[rel="popover"
       data-original-title="Register to favorite"
       data-content="Only registered users can favorite images. <a href='#{signup_path}'>Create your free account now.</a>"
       data-placement="top"]
