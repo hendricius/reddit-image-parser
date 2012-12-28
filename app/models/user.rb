@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :username, :external
   attr_accessor :total_images
 
+  scope :external, where(external: true)
+  scope :humans, where(external: false)
+
   has_many :images
   has_many :favorites
 
