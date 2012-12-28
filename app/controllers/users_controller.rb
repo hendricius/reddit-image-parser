@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   end
   def create
     @user = User.new(params[:user])
+    @user.external = false
     if @user.save
       user = login(params[:user][:username], params[:user][:password], true)
       redirect_to root_path, :notice => "Successfully signed up. Thanks."

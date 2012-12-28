@@ -14,6 +14,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :username
   validates_uniqueness_of :email, :username
 
+  before_validation :ensure_external_not_nil, :on => :create
+
   def self.init_based_on_username(username)
     return false if !username || (username.length == 0)
     temppw = SecureRandom.hex(20)
@@ -30,6 +32,13 @@ class User < ActiveRecord::Base
   # Did the user favorite a specific image?
   def favorited?(test_image)
     favorites.where(image_id: test_image.id).any?
+  end
+
+  # if it is nil, set it to false.
+  def ensure_external_not_nil
+    if external.nil?
+      self.external = false
+    end
   end
 
 end
